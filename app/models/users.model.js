@@ -7,13 +7,19 @@ module.exports = (sequelize, Sequelize) => {
         },
         email: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: {
+                msg: "cet email est déjà utilisé"
+            }
         },
         password: {
             type: Sequelize.STRING,
             allowNull: false
 
         },
+    }, {
+        timestamps: false
+
     });
     return User;
 };

@@ -25,6 +25,13 @@ const Student = studentModel(sequelize, DataTypes)
 const User = userModel(sequelize, DataTypes)
 const Lesson = lessonModel(sequelize, DataTypes)
 
+// créer la relation One-to-one entre User et Student
+Student.hasOne(User);
+User.belongsTo(Student);
+
+// Student.getUser();
+
+
 const initDb = () => {
     return sequelize.sync({ force: true })
         .then(_ => {
@@ -43,9 +50,7 @@ const initDb = () => {
 }
 
 
-//créer la relation One-to-one entre User et Student
-// db.students.hasOne(db.users);
-// db.users.belongsTo(db.students);
+
 
 // db.students.belongsToMany(db.lessons, { through: 'LessonStudents' });
 // db.lessons.belongsToMany(db.students, { through: 'LessonStudents' });
